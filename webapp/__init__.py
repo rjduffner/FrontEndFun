@@ -1,6 +1,5 @@
 from pyramid.config import Configurator
 from pyramid_jinja2 import renderer_factory
-from webapp.models import get_root
 
 
 def main(global_config, **settings):
