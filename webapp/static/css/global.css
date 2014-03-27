@@ -1,0 +1,29 @@
+body, html {
+    background-color: #808080;
+    margin: 0;
+    padding: 0;
+}
+
+.hd{
+    background-color: #4B4A3C;
+    color: white;
+}
+
+.hd h1 {
+    margin: 0;
+    padding: 0;
+    font-size: 32px;
+    width: 100%;
+}
+
+.hd h2 {
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+}
+
+.inner-header {
+    margin: auto;
+    padding: 5px 0px 5px 0px;
+    width: 1120px;
+}

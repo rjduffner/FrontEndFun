@@ -1,0 +1,92 @@
+.full-width {
+    width: 1120px;
+    margin: 20px auto auto auto;
+}
+
+.selected-projects {
+    height: 374px;
+}
+
+.left-60 {
+    width: 60%;
+    margin-top: 20px;
+    float: left;
+}
+
+.right-40 {
+    width: 40%;
+    margin-top: 20px;
+    float: right;
+}
+
+.box-shadow {
+    box-shadow: 10px 10px 10px rgba(0,0,0,0.5);
+}
+
+.center-text {
+    text-align: center;
+}
+
+.color-and-size {
+    font-size: 18px;
+    color: white;
+}
+
+/*------LIST------*/
+.selected-projects ul {
+  list-style-type: none;
+  padding: 0px;
+}
+ 
+.selected-projects li {
+  float: left;
+  position: relative;
+  width: 280px;
+  height: 187px;
+  overflow: hidden;
+}
+ 
+.selected-projects li:hover {
+  cursor: pointer;
+}
+
+/*------PARAGRAPH------*/
+.selected-projects li p {
+  color: transparent;
+  background: transparent;
+  font: 200 30px/300px 'Arvo', Helvetica, Arial, sans-serif;
+  text-align: center;
+  text-transform: uppercase;
+   
+  position: absolute;
+  top: -30px;
+  left: 0;
+  width: 280px;
+  height: 187px;
+ 
+ 
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  -ms-transition: all 1s ease;
+  transition: all 1s ease;
+}
+ 
+.selected-projects li:hover p {
+  color: white;
+  background: #000; /*fallback for old browsers*/
+  background: rgba(0,0,0,0.7);
+}
+
+/*------IMAGES------*/
+.selected-projects img {
+  width: 280px;
+  height: 187px;
+   
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  -ms-transition: all 1s ease;
+  transition: all 1s ease;
+}
+

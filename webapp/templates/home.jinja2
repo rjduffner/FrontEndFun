@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Wandering Through Design</title>
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+        <meta charset="utf-8">
+	    <link rel="stylesheet" type="text/css" href="static/css/home.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="static/css/global.css" media="screen" />
+    </head>
+    <body>
+        <div class="hd">
+            <div class="inner-header">
+                <h1>Wandering Through Design</h1>
+            </div>
+        </div>
+        <div class="bd">
+            
+            <div class="full-width box-shadow">
+                <div class="selected-projects">
+                    <ul>
+                        {% for project in projects %}
+                        <li>
+                            <p>{{ project[0] }}</p>
+                            <img src="{{ project[1] }}">
+                        </li>                    
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+            <div class="full-width color-and-size center-text">
+                <div class="left-60">
+                    <p>At trail web, we strive to make it easy to find new places to ride.</p>
+                    <p>To get started choose a place to ride below or click on the git started link to start your search.</p>
+                </div>
+                <div class="right-40">
+                    <p> Hello 1</p>
+                    <p> World 2</p>
+                </div>
+            </div>
+
+
+
+        </div>
+
+
+        <div id="ft">
+        </div>
+
+
+    </body>
+</html>
