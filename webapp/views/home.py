@@ -4,7 +4,7 @@ Author: Robert Duffner
 Date: March 8, 2014
 Email: rjduffner@gmail.com
 
-views.py
+home.py
 
 """
 from pyramid.view import view_config
@@ -25,7 +25,12 @@ def get_projects():
     return projects
 
 
-@view_config(route_name='home', renderer='templates/home.jinja2')
+@view_config(route_name='home_image_wall', renderer='templates/home_image_wall.jinja2')
 def home(request):
+    projects = get_projects()
+    return {'projects': projects}
+
+@view_config(route_name='home_circle_wall', renderer='templates/home_circle_wall.jinja2')
+def home_v2(request):
     projects = get_projects()
     return {'projects': projects}
