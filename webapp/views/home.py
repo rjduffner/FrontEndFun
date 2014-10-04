@@ -13,14 +13,8 @@ from pyramid.httpexceptions import HTTPFound
 
 def get_projects():
     projects = [
-        ('Hollister Hills', "static/image/2.jpg"),
-        ('Carnige', "static/image/3.jpg"),
-        ('Dumont', "static/image/4.jpg"),
-        ('Johnson Valley', "static/image/5.jpg"),
-        ('Chappie Shasta', "static/image/6.jpg"),
-        ('Metcalf', "static/image/7.jpg"),
-        ('Tahoe', "static/image/8.jpg"),
-        ('Stonyford', "static/image/1.jpg"),
+        ('Tahoe', "static/project_thumbnails/8.jpg"),
+        ('Stonyford', "static/project_thumbnails/8.jpg"),
         ]
     return projects
 

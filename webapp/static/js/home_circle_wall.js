@@ -15,9 +15,11 @@ function createFields() {
     $('.field').remove();
     var container = $('#container');
     for(var i = 0; i < +$('#number_input').text(); i++) {
+        var projectID = '#' + i + ' p'
         $('<div/>', {
             'class': 'field',
-            'text': i + 1,
+            'text': $(projectID).text(),
+            'project': i,
         }).appendTo(container);
     }
 }
@@ -50,6 +52,19 @@ function initPointAt() {
     });
 }
 
+function initEvents() {
+    $( '.field' ).hover(
+    function() {
+        var selectedField = this.getAttribute('project');
+        $('#' + selectedField).removeClass('hide');
+
+    }, function() {
+        var selectedField = this.getAttribute('project');
+        $('#' + selectedField).addClass('hide');
+    }
+    );
+}
 createFields();
 distributeFields();
-initPointAt();
+//initPointAt();
+initEvents();
