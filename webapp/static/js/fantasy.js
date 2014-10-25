@@ -1,10 +1,10 @@
-
-var loadFantasyTable = function() {
-    var fantasyTable = $.get( "/fantasy/table/")
+var loadFantasyTable = function(selected_view) {
+    var fantasyTable = $.get("/fantasy/table/", 
+                             {"selected_view": selected_view})
     .done(function(data) {
-        $( ".bd" ).html(data) 
+        $( ".bd" ).html(data)
+        $( "a[week='" + $( "#current-view" ).text() + "']" ).addClass('current-view');
         $("#fantasy-table").tablesorter();
-       
         var table = $("#fantasy-table");
 
         table.bind("sortEnd",function() {
@@ -13,11 +13,13 @@ var loadFantasyTable = function() {
                 $(this).find("td:eq(0)").text(i);
                 i++;
             });
-        }); 
+        });
+        $( "a" ).on( "click", function() {
+            loadFantasyTable(this.attributes.week.value);
+        });
     })
 }
 
 $(document).ready(function() {
-    loadFantasyTable();
+    loadFantasyTable("0");
 }); 
-

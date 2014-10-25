@@ -1,0 +1,46 @@
+.module {
+    width: 1120px;
+    margin: 10px auto 0px auto;
+}
+
+.module .module-header {
+    min-height: 15px;
+    background-color: #4B4A3C;
+    color: white;
+}
+
+.module .module-footer {
+    min-height: 15px;
+    background-color: #4B4A3C;
+    color: white;
+}
+
+.module thead th:hover {
+    background-color: #808080;
+}
+
+.module table {
+    width: 100%;
+}
+
+/* unvisited link */
+.module a:link {
+    color: #000000;
+}
+
+/* visited link */
+.module a:visited {
+    color: #000000;
+}
+
+.module tbody td {
+    text-align: center;
+}
+
+.current-view {
+    text-decoration: none;
+}
+
+.module .module-body{
+    background-color: #E7E7E7;
+}

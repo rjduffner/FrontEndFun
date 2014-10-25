@@ -1,20 +1,38 @@
-<div id="wrapper container">
-    <table id="fantasy-table">
-        <thead>
-            <tr>
-                {% for header in headers %}
-                <th>{{ header }}</th>
+<div class="module">
+    <div id="current-view" class="hidden">{{current_week}}</div>
+    <div id="view-list" class="">
+        <span>Show: </span>
+        <a href="#" week="-1">Season</a>
+        <a href="#" week="0">Current Week</a>
+        {% for week in range(1,weeks+1) %}
+            <a href="#" week="{{week}}">{{week}}</a>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="module">
+    <div class="module-header">
+    </div>
+    <div class="module-body">
+        <table id="fantasy-table">
+            <thead>
+                <tr>
+                    {% for header in headers %}
+                    <th>{{ header }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in rows %}
+                <tr>
+                    {% for item in row %}
+                    <td>{{ item }}</td>
+                    {% endfor %}
+                </tr>
                 {% endfor %}
-            </tr>
-        </thead>
-        <tbody>
-            {% for row in rows %}
-            <tr>
-                {% for item in row %}
-                <td>{{ item }}</td>
-                {% endfor %}
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
+    <div class="module-footer">
+    </div>
 </div>
