@@ -1,5 +1,4 @@
 from pyramid.config import Configurator
-from pyramid_jinja2 import renderer_factory
 
 
 def main(global_config, **settings):
@@ -11,4 +10,3 @@ def main(global_config, **settings):
     config.include('.views')
     config.scan()
     return config.make_wsgi_app()
-
