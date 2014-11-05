@@ -8,7 +8,9 @@
         <link rel="stylesheet" type="text/css" href="/static/css/fantasy.css" media="screen" />
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script type="text/javascript" src="/static/js/jquery.tablesorter.min.js" ></script>
+        <script src="http://code.highcharts.com/highcharts.js"></script>
         <script type="text/javascript" src="/static/js/fantasy.js" ></script>
+        <script type="text/javascript" src='/static/js/mustache.js'></script>
     </head>
     <body>
         <div class="hd">
@@ -22,8 +24,21 @@
                 Now loading your data
             </div>
         </div>
-        
+        <div id="train-data">
+        </div> 
         <div id="ft">
         </div>
     </body>
+    <script type="text/html" id="stats-chart">
+        {% raw %}
+        <div id="stats-list" class="module">
+        {{ #departing }}
+            <a href="#" week="{{.}}">{{.}}</a>
+        {{ /departing }}
+        </div class="module">
+        <div class="module">
+            <div id="container-barchart" style="width:100%; height:400px;"></div>
+        </div>
+        {% endraw %}
+    </script>
 </html>

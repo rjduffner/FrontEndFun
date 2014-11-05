@@ -115,7 +115,7 @@ def get_stat_catergories():
     return catergories
 
 
-def get_league_stats_by_team(selected_view):
+def get_league_stats_per_team(selected_view):
     if selected_view == -1:
         catergories = get_stat_catergories()
         league_stats = {}
@@ -179,6 +179,68 @@ def get_league_stats_by_team_current_week():
 def get_league_stats_by_team_per_week(week):
     query = "select * from fantasysports.leagues.scoreboard where league_key='%s' and week=%s" % (LEAGUE_KEY, week)
     return yql_query(query)
+
+def get_team_stats_by_week():
+    catergories = get_stat_catergories()
+    league_stats = {}
+    week_stats = {}
+    teams_list = []
+
+    response = get_league_stats_by_team_current_week()
+
+    for matchup in response['results']['league']['scoreboard']['matchups']['matchup']:
+        for team in matchup['teams']['team']:
+            stats = team['team_stats']['stats']['stat']
+
+            team_stats = {}
+            for stat in stats:
+                team_stats[catergories[stat['stat_id']]] = {'id': stat['stat_id'],
+                                                            'value': stat['value']}
+            league_stats[team['name']] = {'team_id': team['team_id'], 'team_stats': team_stats}
+            teams_list.append(team['name'])
+
+        
+
+    current_week = response['results']['league']['current_week']
+    week_stats[current_week] = league_stats
+
+    for week in range(1,4):
+        catergories = get_stat_catergories()
+        league_stats = {}
+
+        response = get_league_stats_by_team_per_week(str(week))
+
+        for matchup in response['results']['league']['scoreboard']['matchups']['matchup']:
+            for team in matchup['teams']['team']:
+                stats = team['team_stats']['stats']['stat']
+
+                team_stats = {}
+                for stat in stats:
+                    team_stats[catergories[stat['stat_id']]] = {'id': stat['stat_id'],
+                                                                'value': stat['value']}
+                league_stats[team['name']] = {'team_id': team['team_id'], 'team_stats': team_stats}
+
+        week_stats[str(week)] = league_stats
+        week_stats['current_week'] = str(current_week)
+        week_stats['teams_list'] = teams_list
+
+
+
+    return week_stats
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

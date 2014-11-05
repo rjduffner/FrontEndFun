@@ -28,7 +28,7 @@ def fantasy_table(request):
     #number_of_weeks = fantasy_api.get_number_of_weeks()
     number_of_weeks = 24
 
-    stats = fantasy_api.get_league_stats_by_team(selected_view)
+    stats = fantasy_api.get_league_stats_per_team(selected_view)
 
     sorting_columns = ['G', 'A', '+/-', 'PIM', 'PPP', 'SHP', 'GWG',
                        'SOG', 'FW', 'HIT', 'BLK', 'W', 'GAA', 'SV%', 'SHO']
@@ -49,3 +49,15 @@ def fantasy_table(request):
             'rows': rows,
             'weeks': number_of_weeks,
             'current_week': selected_view}
+
+
+
+@view_config(route_name='fantasy_chart',
+             renderer='json')
+def fantasy_chart(request):
+    week_stats = fantasy_api.get_team_stats_by_week()
+    sorting_columns = ['G', 'A', '+/-', 'PIM', 'PPP', 'SHP', 'GWG',
+                       'SOG', 'FW', 'HIT', 'BLK', 'W', 'GAA', 'SV%', 'SHO']
+    week_stats['stats'] = sorting_columns
+    return {"stats_by_week": week_stats}
+
