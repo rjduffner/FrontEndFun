@@ -24,11 +24,6 @@ var loadFantasyTable = function(selected_view) {
 
 var chartData;
 
-
-
-
-
-
 var getFantasyChart = function() {
     var fantasyTable = $.get("/fantasy/chart/")
     .done(function(data) {
@@ -40,8 +35,8 @@ var getFantasyChart = function() {
 
 var loadFantasyChart = function(selected_view) {
     data = chartData
-    current_week = parseInt(data.stats_by_week.current_week);
-    teams = data.stats_by_week.teams_list;
+    current_week = parseInt(chartData.stats_by_week.current_week);
+    teams = chartData.stats_by_week.teams_list;
     stat = selected_view;
 
     var weeks = new Array();
@@ -54,7 +49,7 @@ var loadFantasyChart = function(selected_view) {
         current_team.name = teams[team];
         team_data = new Array();
         for(i = 0; i < weeks.length; i++){
-            current_stat = data.stats_by_week[i+1][teams[team]]['team_stats'][stat].value;
+            current_stat = chartData.stats_by_week[i+1][teams[team]]['team_stats'][stat].value;
             if(current_stat == null) {
                 current_stat = '0';
             }
@@ -64,7 +59,7 @@ var loadFantasyChart = function(selected_view) {
         team_stats.push(current_team);
     }
 
-    var finalTrainData = {'departing' : data.stats_by_week.stats}
+    var finalTrainData = {'departing' : chartData.stats_by_week.stats}
     var tpl = $('#stats-chart').html()
     var html = Mustache.to_html(tpl, finalTrainData);
     $('#train-data').html(html);
@@ -87,7 +82,8 @@ var loadFantasyChart = function(selected_view) {
             series: team_stats 
         });
     });
-    $( "#stats-list a" ).on( "click", function() {
+    $( "#stats-list a" ).on( "click", function(event) {
+        event.preventDefault();
         loadFantasyChart(this.attributes.week.value);
     });
 }

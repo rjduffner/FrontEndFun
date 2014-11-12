@@ -1,7 +1,7 @@
 import os
 import yaml
 import yql
-
+import httplib2
 
 # YQL query to get current nhl game key
 # select * from fantasysports.games where use_login=1 and game_key in ('nhl')
@@ -39,7 +39,9 @@ class FantasyApi(object):
 
         self.y3 = yql.ThreeLegged(
             self.configuration.get('consumer_key'),
-            self.configuration.get('consumer_secret'))
+            self.configuration.get('consumer_secret'),
+            httplib2.Http(disable_ssl_certificate_validation=True)
+            )
 
     def _load_yaml_configuration(self):
         with open(self.key_configuration_file) as f:
@@ -64,7 +66,7 @@ class FantasyApi(object):
     def get_access_token(self):
         try:
             token = yql.YahooToken.from_string(self.configuration['access_token'])
-        except KeyError:
+        except (KeyError, ValueError) as e:
             token = self.get_access_token_manually()
             self.configuration['access_token'] = token.to_string()
 
@@ -204,7 +206,7 @@ def get_team_stats_by_week():
     current_week = response['results']['league']['current_week']
     week_stats[current_week] = league_stats
 
-    for week in range(1,4):
+    for week in range(1, int(current_week)):
         catergories = get_stat_catergories()
         league_stats = {}
 
