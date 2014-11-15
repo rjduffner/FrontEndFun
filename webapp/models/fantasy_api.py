@@ -100,8 +100,13 @@ def get_raw_standings():
     return yql_query(query)
 
 
-def get_raw_stats():
-    query = "select * from fantasysports.teams.stats where team_key='%s'" % TEAM_KEY
+def get_league_stats_by_team_current_week():
+    query = "select * from fantasysports.leagues.scoreboard where league_key='%s'" % LEAGUE_KEY
+    return yql_query(query)
+
+
+def get_league_stats_by_team_per_week(week):
+    query = "select * from fantasysports.leagues.scoreboard where league_key='%s' and week=%s" % (LEAGUE_KEY, week)
     return yql_query(query)
 
 
@@ -174,13 +179,25 @@ def get_league_stats_per_team(selected_view):
 
 
 
-def get_league_stats_by_team_current_week():
-    query = "select * from fantasysports.leagues.scoreboard where league_key='%s'" % LEAGUE_KEY
-    return yql_query(query)
 
-def get_league_stats_by_team_per_week(week):
-    query = "select * from fantasysports.leagues.scoreboard where league_key='%s' and week=%s" % (LEAGUE_KEY, week)
-    return yql_query(query)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 def get_team_stats_by_week():
     catergories = get_stat_catergories()
@@ -226,24 +243,23 @@ def get_team_stats_by_week():
         week_stats['current_week'] = str(current_week)
         week_stats['teams_list'] = teams_list
 
+    league_stats = {}
 
+    response = get_raw_standings()
+    teams = response['results']['league']['standings']['teams']['team']
+    for team in teams:
+        stats = team['team_stats']['stats']['stat']
+
+        team_stats = {}
+        for stat in stats:
+            team_stats[catergories[stat['stat_id']]] = {'id': stat['stat_id'],
+                                                        'value': stat['value']}
+            league_stats[team['name']] = {'team_id': team['team_id'], 'team_stats': team_stats}
+        
+
+    week_stats['0'] = league_stats
 
     return week_stats
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 def get_number_of_weeks():

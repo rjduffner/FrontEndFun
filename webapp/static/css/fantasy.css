@@ -5,6 +5,38 @@
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
+
+}
+
+/* Small Screen ----------- */
+@media only screen 
+and (max-height : 450px) {
+  .floating {
+    position: relative;
+    margin: 10px auto auto auto;
+  }
+}
+
+/* Small Laptop Screen ----------- */
+@media only screen
+and (min-height : 450px)
+and (max-height : 525px) {
+  .floating {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    }
+}
+
+/* Normal Screen ----------- */
+@media only screen
+and (min-height : 525px){
+  .floating {
+    position: relative;
+    top: 50px;
+    margin: auto;
+    }
 }
 
 .module .module-header {

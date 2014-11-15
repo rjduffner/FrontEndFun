@@ -20,24 +20,80 @@
         </div>
         
         <div class="bd">
-            <div class="loading">
-                Now loading your data
+            <div class="module floating loading">
+                <div class="module-header">
+                </div>
+                <div class="module-body">
+                    Now loading your data
+                </div>
+                <div class="module-footer">
+                </div>
             </div>
         </div>
-        <div id="train-data">
-        </div> 
         <div id="ft">
         </div>
     </body>
-    <script type="text/html" id="stats-chart">
+
+    <script type="text/html" id="stats-table-template">
         {% raw %}
-        <div id="stats-list" class="module">
-        {{ #departing }}
+        <div class="module floating">
+            <div class="view-list">
+                <span>Show: </span>
+                <a href="#" week="0">Season</a>
+                <a href="#" week="{{ currentWeek }}">Current Week</a>
+                {{ #allWeeks }}
+                    <a href="#" week="{{.}}">{{.}}</a>
+                {{ /allWeeks }}
+            </div>
+            <div class="module-header">
+            </div>
+            <div class="module-body">
+                <table id="fantasy-table">
+                    <thead>
+                        <tr>
+                            {{ #columns }}
+                            <th>{{ . }}</th>
+                            {{ /columns }}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{ #leagueStats }}
+                        <tr>
+                            {{ #. }}
+                            <td>
+                                {{ . }}
+                            </td>
+                            {{ /. }}
+                        </tr>
+                        {{ /leagueStats }}
+                    </tbody>
+                </table>
+            </div>
+            <div class="module-footer">
+            </div>
+            <div class="option-list">
+                <a class="show-table" href="#" >Compare By Table</a>
+                <a class="show-chart" href="#" >Compare By Chart</a>
+            </div>
+        </div>
+        {% endraw %}
+    </script>
+
+    <script type="text/html" id="stats-chart-template">
+        {% raw %}
+        <div id="stats-list" class="module floating">
+            <div class="view-list">
+            {{ #departing }}
             <a href="#" week="{{.}}">{{.}}</a>
-        {{ /departing }}
-        </div class="module">
-        <div class="module">
-            <div id="container-barchart" style="width:100%; height:400px;"></div>
+            {{ /departing }}
+            </div>
+            <div id="container-barchart" style="width:100%; height:400px;">
+            </div>
+            <div class="option-list">
+                <span>Show: </span>
+                <a class="show-table" href="#" >Compare By Table</a>
+                <a class="show-chart" href="#" >Compare By Chart</a>
+            </div>
         </div>
         {% endraw %}
     </script>
